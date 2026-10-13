@@ -1,0 +1,82 @@
+{
+  "before_training": {
+    "cases": 64,
+    "found": 64,
+    "mean_found_s": 290.4478125,
+    "by_size": {
+      "1": {
+        "found": 16,
+        "mean_found_s": 36.79
+      },
+      "2": {
+        "found": 16,
+        "mean_found_s": 123.878125
+      },
+      "3": {
+        "found": 16,
+        "mean_found_s": 298.073125
+      },
+      "4": {
+        "found": 16,
+        "mean_found_s": 703.05
+      }
+    },
+    "incomplete": []
+  },
+  "selected_direction_training": {
+    "cases": 64,
+    "found": 64,
+    "mean_found_s": 190.6690625,
+    "by_size": {
+      "1": {
+        "found": 16,
+        "mean_found_s": 33.55
+      },
+      "2": {
+        "found": 16,
+        "mean_found_s": 114.80125
+      },
+      "3": {
+        "found": 16,
+        "mean_found_s": 253.07750000000001
+      },
+      "4": {
+        "found": 16,
+        "mean_found_s": 361.2475
+      }
+    },
+    "incomplete": []
+  },
+  "further_training": {
+    "cases": 64,
+    "found": 64,
+    "mean_found_s": 191.19515625,
+    "by_size": {
+      "1": {
+        "found": 16,
+        "mean_found_s": 32.88125
+      },
+      "2": {
+        "found": 16,
+        "mean_found_s": 89.55
+      },
+      "3": {
+        "found": 16,
+        "mean_found_s": 308.9475
+      },
+      "4": {
+        "found": 16,
+        "mean_found_s": 333.401875
+      }
+    },
+    "incomplete": []
+  },
+  "audit": {
+    "checked_decisions": 635,
+    "outward_decisions": 0,
+    "exterior_without_gate": 0,
+    "masked_output_violations": 0,
+    "unsafe_admitted_candidates": 0,
+    "found": 64
+  }
+}

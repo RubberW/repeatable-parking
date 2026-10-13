@@ -1,0 +1,18 @@
+{
+  "selected": "selected_direction_training",
+  "temperature": 0.5,
+  "selection": "Already selected using validation only; final results cannot change selection.",
+  "seed": 2026102302,
+  "cases": 64,
+  "variants": {
+    "before_training": "models/boundary_direction_v2/direction_seed3/best.bin",
+    "selected_direction_training": "models\\boundary_heading_v1\\heading_seed4\\best.bin",
+    "further_training": "models/boundary_heading_v2/heading_seed4/best.bin"
+  },
+  "semantics": "Same interior-witness gate and decoder for all policies. Time to first black. No physical wheel-sweep guarantee.",
+  "hashes": {
+    "before_training": "ed284bc2c5a8511dabd7b49e9134108b6ac46aabf3771f4d698c2c892c30b426",
+    "selected_direction_training": "c24340da7469c7e1c44f02d5f2796cce43031c005d8d819bb0d4d2f209c7602e",
+    "further_training": "e1fe8390b3530773390c86d0531a6f0b102263bb69e06546d2dcf4ad0b864d69"
+  }
+}

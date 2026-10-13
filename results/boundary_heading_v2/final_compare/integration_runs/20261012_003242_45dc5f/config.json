@@ -1,0 +1,84 @@
+{
+  "shape": "rectangle",
+  "width_mm": 1000.0,
+  "height_mm": 1000.0,
+  "polygon": [
+    [
+      -500.0,
+      -500.0
+    ],
+    [
+      500.0,
+      -500.0
+    ],
+    [
+      500.0,
+      500.0
+    ],
+    [
+      -500.0,
+      500.0
+    ]
+  ],
+  "target_x": -172.43546726536928,
+  "target_y": 202.9468340788245,
+  "target_yaw": 0.9060534205996111,
+  "robot_x": 303.7170839338295,
+  "robot_y": 257.56486171048743,
+  "robot_yaw": -3.116462122151907,
+  "encoder_seed": 39401872549242755,
+  "policy_seed": 3689452538157701743,
+  "seed": 20261012,
+  "stop_mode": "continue",
+  "margin_mm": 100,
+  "reserve_gb": 2,
+  "quota_gb": 5,
+  "memory_side": 192,
+  "policy": "E:\\SEMTM0043\\RepeatableParking\\results\\boundary_heading_v2\\final_compare\\integration_runs\\20261012_003242_45dc5f\\policy.bin",
+  "model": "桌内方向约束＋学习搜索方向（本轮验证集选中）",
+  "policy_sha256": "c24340da7469c7e1c44f02d5f2796cce43031c005d8d819bb0d4d2f209c7602e",
+  "created": "2026-10-12 00:32:42",
+  "format_version": 2,
+  "start_validation": {
+    "body_clearance_mm": 146.28291606617051,
+    "wheel_clearances_mm": [
+      192.41367095193488,
+      190.15216118040615
+    ],
+    "required_clearance_mm": 2
+  },
+  "speed_settings": {
+    "search_command_mm_s": 200,
+    "simulated_wheel_limit_mm_s": 250,
+    "physical_top_speed_mm_s": null
+  },
+  "controller_sources": {
+    "BoundaryChecks.java": "297bd00a6bd3ce20765a4e5d68f08df6b1c3deb127cf5f52ccb8d413cec563d1",
+    "BoundaryEval.java": "93f0d8dfa0b5a08ad22efd776474d9a2b0d705921551a0669d7d6e6bc5087d99",
+    "BoundaryGuard.java": "5514b2fcef595360d07a2dd257cfe97ec1ce5364444ba697ccef267e6621238b",
+    "BoundaryParity.java": "28c02ac95119948be7e3ec4b2278fd32db6745130930e461137c55481d78954e",
+    "BoundarySearchServer.java": "62c455bc71b934ae2d51e263549781d4bccea5bf71a686173069bddb237594c4",
+    "CompactSearch.java": "b0701f8f2afb02b79333b5869be7f90c691e6b071e993e7f2966f167172b94df",
+    "CoverageSearch.java": "79e04aa242ef8fdb3632a3b711b050bf914a593ef7b9f451680374b96eb60c80",
+    "DirectionChecks.java": "e128faf58126e1974cb5bd8e03d7aa67c6954b45a822241523a10b634720d3bb",
+    "DirectionObjective.java": "e55f8c4dbb82571d1187b148944fb4efb366ed20e26e989b8056fffe23af9d00",
+    "EdgeTracer.java": "12e7edec1df7301656854cc47eaa09f83b0a41637de6afb0fc7dfb0ad2e56547",
+    "GateAudit.java": "5b580f4a435da1f22fe403d2dc0ecf6075cd09965f8da1cd94db404903eb0cc2",
+    "HardHeadingAudit.java": "64ec9662ee065b50f7d1dc3ee4dc02b29d6d050e81e43b59f01ea568bdc4f66e",
+    "HeadingChecks.java": "ad396dbc1b3a25bf13c186bc6d024a9f6b56d0fe40b5a09909fbb7628cd6626e",
+    "HeadingGate.java": "5822ef3d4cd54c107ad7c5fa5012a9e4efd48c212727052e040358bd46bdb7ad",
+    "NeuralSearch.java": "fb03c9c3987b93008d32d2f7089de9d58c8cb507c330c2268f8b59726faa46bc",
+    "PanelWorker.java": "2d3449e04728b53563ee9a9b244fe86f0a1e8257dbd07354cca53bba9f33611a",
+    "ParkingCore.java": "1c559e788789dc008a2fd064b0453cbb1e08cffaa224e21952e6d1b1a3d8d0ea",
+    "RewardInputs.java": "25b25ed3d678be2bb9b22b740a0cccc0fbea5a34472c97e714159087a2ded2c2",
+    "SearchDecision.java": "3a85074ce4899e543fd0827fac6c65127f023721e966f3dc26772e733ccb0397",
+    "SearchMemory.java": "f910cbf26e7770d2b0bcf2211c1929ca17397539eb9cd13291299fa77d6c6900",
+    "SupportRisk.java": "50e0a5e27c00c628aaa5cfbfa6ece2634935bcbbc5b73feaabfca818992ae18b",
+    "SupportRiskChecks.java": "25469fc0cd49462f7f60c990fdfcd1cbcf31dc2b26ba58986861f85fa11d8f83",
+    "WheelDynamics.java": "d0697c6b67ed6331a0769afb5220e98a513f8a2d039fa972220222c1ce2e49fd"
+  },
+  "notes": "10ms archived; high precision plant; no total search deadline; integer sensors/encoders only; non-rectangular long straight-wall inference disabled; wheel-centre crossing is a 2D support proxy, not 3D falling physics. Main-policy interior subgoal constraint; convex table assumed. Local odometry allowance 8mm is not hardware calibrated. Wheel-swept turning paths remain unconstrained. No automatic stop at wheel crossing.",
+  "policy_temperature": 0.5,
+  "learn_boundary": true,
+  "heading_gate": "recent_interior_witness"
+}

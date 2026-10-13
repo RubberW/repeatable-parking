@@ -1,0 +1,13 @@
+{
+  "reason": "Validation warm start 158.29s beats retrained checkpoints 172.51/178.45s. Test one lower-temperature decoder before reading independent test data; never select worse weights just because newly trained.",
+  "temperatures": [
+    1,
+    0.5
+  ],
+  "models": [
+    "warm_start",
+    "heading_seed4"
+  ],
+  "selection_data": "validation.csv only",
+  "fresh_final_holdout_seed": 2026102302
+}

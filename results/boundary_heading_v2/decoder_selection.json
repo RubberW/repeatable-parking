@@ -1,0 +1,54 @@
+{
+  "selected": {
+    "model": "warm_start",
+    "policy": "models\\boundary_heading_v1\\heading_seed4\\best.bin",
+    "temperature": 0.5,
+    "found": 32,
+    "wrong": 0,
+    "outward_probability_sum": 0.0,
+    "mean_found_s": 155.21625,
+    "source": "results\\boundary_heading_v2\\warm_start_temperature05_validation.csv"
+  },
+  "candidates": [
+    {
+      "model": "warm_start",
+      "policy": "models\\boundary_heading_v1\\heading_seed4\\best.bin",
+      "temperature": 1,
+      "found": 32,
+      "wrong": 0,
+      "outward_probability_sum": 0.0,
+      "mean_found_s": 158.294375,
+      "source": "results\\boundary_heading_v2\\warm_start_validation.csv"
+    },
+    {
+      "model": "warm_start",
+      "policy": "models\\boundary_heading_v1\\heading_seed4\\best.bin",
+      "temperature": 0.5,
+      "found": 32,
+      "wrong": 0,
+      "outward_probability_sum": 0.0,
+      "mean_found_s": 155.21625,
+      "source": "results\\boundary_heading_v2\\warm_start_temperature05_validation.csv"
+    },
+    {
+      "model": "heading_seed4",
+      "policy": "models\\boundary_heading_v2\\heading_seed4\\best.bin",
+      "temperature": 1,
+      "found": 32,
+      "wrong": 0,
+      "outward_probability_sum": 0.0,
+      "mean_found_s": 172.5078125,
+      "source": "models\\boundary_heading_v2\\heading_seed4\\validation_0160.csv"
+    },
+    {
+      "model": "heading_seed4",
+      "policy": "models\\boundary_heading_v2\\heading_seed4\\best.bin",
+      "temperature": 0.5,
+      "found": 32,
+      "wrong": 0,
+      "outward_probability_sum": 0.0,
+      "mean_found_s": 156.718125,
+      "source": "results\\boundary_heading_v2\\heading_seed4_temperature05_validation.csv"
+    }
+  ]
+}
