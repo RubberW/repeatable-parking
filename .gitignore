@@ -1,0 +1,13 @@
+/build/
+/tmp/
+/tools/
+/archives/
+/delivery/
+/versions/
+/.playwright-cli/
+__pycache__/
+*.pyc
+*.log
+/data/*
+!/data/local_opt/
+/results/retention_20261013/check_*/integration_runs/

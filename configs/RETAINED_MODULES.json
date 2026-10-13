@@ -1,0 +1,41 @@
+{
+  "updated": "2026-10-13",
+  "active_decision": "configs/CURRENT_SEARCH.json",
+  "modules": [
+    {
+      "id": "exploration",
+      "name": "探索主模型",
+      "status": "retained_validation_selected",
+      "model": "heading_seed4 + recent-interior-witness heading gate",
+      "policy": "models/boundary_heading_selected/policy.bin",
+      "sha256": "c24340da7469c7e1c44f02d5f2796cce43031c005d8d819bb0d4d2f209c7602e",
+      "temperature": 0.5,
+      "report": "results/boundary_heading_v2/本轮方向学习简报.txt",
+      "historical_fresh_holdout": {"found": 64, "cases": 64, "mean_found_s": 190.6690625},
+      "role": "Use visitation memory and persistent subgoals; choose new regions and feasible desired directions after edge contact.",
+      "limitation": "The direction gate does not constrain the wheel trajectory during a turn. This is a validation-selected baseline, not a global optimum."
+    },
+    {
+      "id": "local_parking",
+      "name": "触黑框后的定位停车控制器",
+      "status": "retained",
+      "method": "early_fit",
+      "kind": "geometric feedback controller, not separate neural weights",
+      "sources": ["training/boundary_heading_cert/java/ParkingCore.java", "training/boundary_heading_cert/java/EdgeTracer.java"],
+      "report": "results/unlimited_optimization/RESULTS.txt",
+      "historical_nominal_local_test": {"parked": 64, "cases": 64, "mean_local_s": 19.91},
+      "role": "Fit early when observations suffice, verify direction stripes, scan laterally only when ambiguous, then park and verify settling.",
+      "limitation": "The 19.91-second local metric and the main model's search metric come from different experiments; do not add them as a measured end-to-end score."
+    },
+    {
+      "id": "boundary_motion",
+      "name": "触边运动小模型",
+      "status": "not_implemented_next_step",
+      "inputs": ["current heading estimated from encoders", "desired heading/subgoal selected by main policy", "local reflectance edge evidence", "estimated left/right wheel velocity"],
+      "outputs": "left/right wheel commands or a short retreat/turn/arc action",
+      "role": "Execute the chosen direction after edge contact; reduce wheel and centre excursion while recovering promptly.",
+      "constraints": "Freeze the retained exploration and parking modules; no simulator truth as inference inputs; no training or hardware upload during this cleanup.",
+      "evaluation": "Compare identical contact states and wheel velocities against the current executor, then check paired search completion and parking success."
+    }
+  ]
+}
