@@ -1,6 +1,6 @@
 # 重复停车项目
 
-本项目在课程提供的 Processing 数字孪生中，让小车从未知起点探索场地、找到停车标记，再定位并停稳。当前维护者负责 motor 电机子系统。我们已固定探索与停车模块，下一步只优化触边后的轮子运动。
+本项目在课程提供的 Processing 数字孪生中，让小车从未知起点探索场地、找到停车标记，再定位并停稳。当前维护者负责 motor 电机子系统。探索和停车模块已固定；触边运动小模型现已实现并完成仿真对照。
 
 **新接手者先读 [项目交接说明](docs/项目交接说明.md)。** 可直接分享的PDF在 [交接文档](output/pdf/重复停车项目交接说明.pdf)。
 
@@ -10,11 +10,11 @@
 | --- | --- | --- |
 | heading_seed4 探索主模型和桌内方向约束 | 已训练并保留 | 用访问记忆与持续子目标选择探索区域，触边后在可行方向中选择 |
 | early_fit 定位停车控制器 | 已实现并保留 | 触黑框后提前定位、确认方向、按需扫描并验证停车 |
-| 触边运动小模型 | 尚未实现 | 接收当前航向和主模型目标方向，优化左右轮回退与转向 |
+| 条件触边运动小模型 | 已实现并经仿真验证 | 接收目标方向和原方向；接近平行时固定靠边轮、内侧轮后退，其余姿态直接转 |
 
 **触边**是检测到场地边界；**触黑框**是首次检测到停车标记黑线。前者调整探索，后者开始定位停车。
 
-当前选择只看 [CURRENT_SEARCH.json](configs/CURRENT_SEARCH.json)，模块定义看 [RETAINED_MODULES.json](configs/RETAINED_MODULES.json)。第二个模块是几何反馈控制器，没有独立神经权重；第三个模块没有已完成的模型文件。
+当前选择只看 [CURRENT_SEARCH.json](configs/CURRENT_SEARCH.json)，模块定义看 [RETAINED_MODULES.json](configs/RETAINED_MODULES.json)。第二个模块是几何反馈控制器，没有独立神经权重；第三个网络权重只有304字节，见 [触边运动优化报告](docs/触边运动优化报告.md)。
 
 ## 快速运行
 
@@ -38,7 +38,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\current_demo.ps1 -
 ## 当前验收
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build_boundary_heading_cert.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build_boundary_motion.ps1
 python .\scripts\verify_current.py
 ```
 
@@ -54,22 +54,24 @@ python .\scripts\verify_current.py
 
 这三项来自不同实验，不能把前两项均时相加当作实测总时间。当前方案由验证集选定，不是全局最优证明。
 
-635次边界方向决策审查中错误方向为0，但64场景中仍有60条出现整轮支撑代理越线、28条出现重心或双轮心越线。因此下一步研究轮子实际转弯轨迹。当前是线外仍有支撑的虚拟边界仿真，未做实车标定或烧录。
+原方向审查635次错误方向为0，但原执行器仍有轮子越线。这次固定探索和停车，用64个新场景配对比较轮子运动：两版64/64正确停车，平均总时间203.07→196.50秒，平均整轮支撑代理越线7.07→3.22秒，重心或双轮心越线场景19→8个。逐场景结果见 [新对照摘要](results/boundary_motion_v1/summary.json)。仍有越线，当前是线外仍有支撑的虚拟边界仿真，未做实车标定或烧录。
 
 ## 主要文件
 
 - `models/boundary_heading_selected/policy.bin` 和 `policy.pt`：当前主模型。
-- `training/boundary_heading_cert/java`：运行时优先使用的控制器、方向约束和测试。
+- `models/boundary_motion_candidate/policy.bin`：已冻结的触边运动小模型，名称保留候选实验来源，当前入口已启用。
+- `training/boundary_motion/java`：当前运行代码；方向约束和停车源码与原版完全相同，仅接入新的运动执行。
+- `training/boundary_heading_cert/java`：保留的原执行器、方向约束和停车控制器。
 - `DigitalTwinParkingPrecision`：课程仿真模型适配与精确累计。
 - `results/boundary_heading_v2/final_compare`：探索对照和方向审查依据。
 - `results/unlimited_optimization/RESULTS.txt` 与 `data/local_opt`：局部停车依据。
-- `data/boundary_heading_runs`：本机新运行的配置、压缩轨迹和摘要。
+- `data/boundary_motion_runs`：本机新运行的配置、两份冻结权重、压缩轨迹和摘要。
 
 历史实验位于本机 `archives/20261013_cleanup`，2026年10月13日的冻结包为 `delivery/retained_modules_20261013.zip`。轻量分享版本不附大体积历史归档或缓存；旧报告中的旧路径需要从归档恢复，本README和当前配置代表现行入口。
 
 ## 下一步
 
-固定探索权重及 `early_fit`，只开发触边运动小模型。用相同接触姿态、轮速和目标方向，对比现有执行器与候选模型，先检验越线深度、越线时长和恢复时间，再确认完整搜索及停车成功率。接口和对照设计见交接说明。
+固定探索权重及 `early_fit`，继续改善剩余越界事件：边线估计不准、角落和大角度直接转弯。保留用户确认的条件动作，避免每次触边都强行倒车。实车电机、制动能力和边线读数需另做实验。
 
 ## 来源
 

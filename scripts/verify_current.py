@@ -18,13 +18,15 @@ CP = ';'.join(map(str, [ROOT/'build/boundary_heading_cert', ROOT/'build/DigitalT
 def main():
     OUT.mkdir(parents=True, exist_ok=False)
     cfg = json.loads((ROOT/'configs/CURRENT_SEARCH.json').read_text(encoding='utf-8'))
+    motion = cfg.get('boundary_motion', {}).get('enabled', False)
+    check_cp = CP.replace(str(ROOT/'build/boundary_heading_cert'), str(ROOT/'build/boundary_motion')) if motion else CP
     policy = ROOT/cfg['policy']
     assert hashlib.sha256(policy.read_bytes()).hexdigest() == cfg['sha256']
     assert cfg['model'] == 'heading_seed4' and cfg['temperature'] == .5
     assert cfg['local_method'] == 'early_fit'
     flags = dict(check=True, creationflags=subprocess.CREATE_NO_WINDOW)
-    subprocess.run([JAVA, '-Xmx256m', '-cp', CP, 'HeadingChecks', str(policy)], **flags)
-    subprocess.run([JAVA, '-Xmx256m', '-cp', CP, 'BoundaryParity', str(policy), str(OUT/'parity.bin')], **flags)
+    subprocess.run([JAVA, '-Xmx256m', '-cp', check_cp, 'HeadingChecks', str(policy)], **flags)
+    subprocess.run([JAVA, '-Xmx256m', '-cp', check_cp, 'BoundaryParity', str(policy), str(OUT/'parity.bin')], **flags)
     raw = (OUT/'parity.bin').read_bytes()
     golden = (ROOT/'results/boundary_heading_v2/final_compare/delivery_parity.bin').read_bytes()
     assert len(raw) == len(golden)
@@ -33,13 +35,28 @@ def main():
     error = max(abs(a-b) for a,b in zip(actual, expected))
     assert error < 2e-5, error
 
-    sys.path.insert(0, str(ROOT/'training/boundary_heading_cert'))
-    import panel_experiment as ui
+    if motion:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location('current_motion_ui', ROOT/'training/boundary_motion/panel_experiment.py')
+        ui = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(ui)
+        frozen = json.loads((ROOT/'results/boundary_motion_v1/frozen_baseline.json').read_text())
+        for path, digest in frozen.items():
+            if path.replace('\\', '/') != 'configs/CURRENT_SEARCH.json':
+                assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == digest, path
+        for name in ('HeadingGate.java', 'ParkingCore.java', 'EdgeTracer.java'):
+            assert (ROOT/'training/boundary_motion/java'/name).read_bytes() == (ROOT/'training/boundary_heading_cert/java'/name).read_bytes()
+        assert hashlib.sha256((ROOT/cfg['boundary_motion']['policy']).read_bytes()).hexdigest() == cfg['boundary_motion']['sha256']
+        subprocess.run([JAVA, '-Xmx256m', '-cp', ui.panel.CP, 'MotionChecks', str(ROOT/cfg['boundary_motion']['policy']), str(ROOT/'results/boundary_motion_v1/motion_parity.csv')], **flags)
+    else:
+        sys.path.insert(0, str(ROOT/'training/boundary_heading_cert'))
+        import panel_experiment as ui
     app = ui.create_app()
     app.withdraw()
     app.update_idletasks()
     app.destroy()
-    scene = next(csv.DictReader((ROOT/'results/boundary_heading_v2/final_compare/scenes.csv').open()))
+    scene_file = ROOT/('results/boundary_motion_v1/development_scenes.csv' if motion else 'results/boundary_heading_v2/final_compare/scenes.csv')
+    scene = next(csv.DictReader(scene_file.open()))
     scenario = ui.panel.make_scenario(width=float(scene['size']), height=float(scene['size']), seed=20261013)
     for dst,src in [('robot_x','x'), ('robot_y','y'), ('robot_yaw','yaw'),
                     ('target_x','target_x'), ('target_y','target_y'), ('target_yaw','target_yaw')]:
@@ -66,9 +83,16 @@ def main():
             process.wait(timeout=20)
         log.close()
     replay_cfg, frames, count, partial = ui.panel.load_replay(directory)
-    reference = next(csv.DictReader((ROOT/'results/boundary_heading_v2/final_compare/selected_direction_training.csv').open()))
+    reference_file = ROOT/('results/boundary_motion_v1/development_learned_full.csv' if motion else 'results/boundary_heading_v2/final_compare/selected_direction_training.csv')
+    reference = next(csv.DictReader(reference_file.open()))
     assert state['status'] == 'parked', state
-    assert state['first_black_ms']/1000 == float(reference['time_s'])
+    assert state['first_black_ms']/1000 == float(reference['first_black_s'] if motion else reference['time_s'])
+    if motion:
+        assert state['time_ms']/1000 == float(reference['total_s'])
+        assert replay_cfg['motion_sha256'] == cfg['boundary_motion']['sha256']
+        assert (directory/'motion_policy.bin').read_bytes() == (ROOT/cfg['boundary_motion']['policy']).read_bytes()
+        result_sources = frozen['controller_sources']
+        assert result_sources['ParkingCore.java'] == hashlib.sha256((ROOT/'training/boundary_heading_cert/java/ParkingCore.java').read_bytes()).hexdigest()
     assert not partial and count > 0
     assert replay_cfg['policy_sha256'] == cfg['sha256']
     assert frozen['controller_sources']['HeadingGate.java'] == hashlib.sha256(
@@ -77,7 +101,8 @@ def main():
                   gui_constructed=True, integrated_result=state['status'],
                   first_black_s=state['first_black_ms']/1000, total_s=state['time_ms']/1000,
                   replay_frames=count, replay_complete=True,
-                  note='One unchanged integration scene; historical 64-case scores were not recomputed.')
+                  boundary_motion_enabled=motion,
+                  note='One current-runtime integration scene; full paired evaluation is separately archived.')
     (OUT/'verification.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
     print(json.dumps(result, indent=2), flush=True)
 

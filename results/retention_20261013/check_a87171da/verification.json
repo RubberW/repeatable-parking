@@ -1,0 +1,13 @@
+{
+  "policy_sha256": "c24340da7469c7e1c44f02d5f2796cce43031c005d8d819bb0d4d2f209c7602e",
+  "heading_checks": "passed",
+  "golden_parity_max_error": 0.0,
+  "gui_constructed": true,
+  "integrated_result": "parked",
+  "first_black_s": 53.09,
+  "total_s": 75.72,
+  "replay_frames": 7572,
+  "replay_complete": true,
+  "boundary_motion_enabled": true,
+  "note": "One current-runtime integration scene; full paired evaluation is separately archived."
+}

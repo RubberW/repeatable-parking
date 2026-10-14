@@ -1,0 +1,92 @@
+{
+  "model_sha256": "5e230f648838020db73adc3fcefa34a9b30552583342c0f10e9d6f0c203d9ccf",
+  "validation": {
+    "baseline": {
+      "cases": 8,
+      "parked": 8,
+      "false_completion": 0,
+      "mean_search_s": 120.88375,
+      "mean_total_s": 144.255,
+      "mean_full_wheel_s": 6.77,
+      "mean_critical_s": 0.69625,
+      "critical_cases": 4,
+      "worst_wheel_excursion_mm": 67.2908,
+      "motion_starts": 0,
+      "max_hold_drift_mm": 0.0
+    },
+    "learned": {
+      "cases": 8,
+      "parked": 8,
+      "false_completion": 0,
+      "mean_search_s": 132.44375,
+      "mean_total_s": 152.56625,
+      "mean_full_wheel_s": 5.93125,
+      "mean_critical_s": 0.475,
+      "critical_cases": 1,
+      "worst_wheel_excursion_mm": 112.912,
+      "motion_starts": 20,
+      "max_hold_drift_mm": 28.8995
+    }
+  },
+  "fresh_holdout": {
+    "baseline": {
+      "cases": 64,
+      "parked": 64,
+      "false_completion": 0,
+      "mean_search_s": 183.49265625,
+      "mean_total_s": 203.06828125,
+      "mean_full_wheel_s": 7.07234375,
+      "mean_critical_s": 0.34015625,
+      "critical_cases": 19,
+      "worst_wheel_excursion_mm": 116.4763,
+      "motion_starts": 0,
+      "max_hold_drift_mm": 0.0
+    },
+    "learned": {
+      "cases": 64,
+      "parked": 64,
+      "false_completion": 0,
+      "mean_search_s": 176.1196875,
+      "mean_total_s": 196.50140625,
+      "mean_full_wheel_s": 3.2234375,
+      "mean_critical_s": 0.09984375,
+      "critical_cases": 8,
+      "worst_wheel_excursion_mm": 80.4253,
+      "motion_starts": 154,
+      "max_hold_drift_mm": 30.3024
+    }
+  },
+  "paired_differences": {
+    "first_black_s": {
+      "mean_difference": -7.372968749999999,
+      "paired_bootstrap_95_percent": [
+        -66.31453125,
+        50.7484375
+      ]
+    },
+    "search_full_wheel_s": {
+      "mean_difference": -3.8489062499999998,
+      "paired_bootstrap_95_percent": [
+        -4.9556249999999995,
+        -2.7809375
+      ]
+    },
+    "search_critical_s": {
+      "mean_difference": -0.2403125,
+      "paired_bootstrap_95_percent": [
+        -0.3971875,
+        -0.10015625
+      ]
+    }
+  },
+  "train_scenes": 16,
+  "validation_scenes": 8,
+  "holdout_scenes": 64,
+  "contact_states": 138,
+  "selection": "A single angle-conditioned candidate, frozen before fresh holdout. Validation retained parking success and reduced mean support-risk measures, with slower search and a larger worst excursion. No retuning on fresh holdout.",
+  "excluded_evidence": [
+    "initial_screen.csv: empty witness history caused fixture stop",
+    "initial_screen_v2.csv: inappropriate fixed 80mm progress criterion"
+  ],
+  "method": "Identical geometry, seeds, dynamics, exploration policy and early_fit. Only wheel execution differs. Sensor-derived edge estimate at inference; true geometry only in evaluator."
+}

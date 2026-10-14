@@ -5,5 +5,11 @@ $chosen=Get-Content -LiteralPath (Join-Path $root 'configs\CURRENT_SEARCH.json')
 $policy=Join-Path $root $chosen.policy
 if($chosen.launcher -ne 'heading' -or $chosen.local_method -ne 'early_fit'){throw 'Unexpected retained module configuration'}
 if((Get-FileHash -LiteralPath $policy -Algorithm SHA256).Hash.ToLowerInvariant() -ne $chosen.sha256){throw 'Retained policy checksum mismatch'}
-& (Join-Path $PSScriptRoot 'boundary_heading_demo.ps1') -Seed $Seed -Size $Size -SkipBuild:$SkipBuild
+if($chosen.boundary_motion.enabled){
+ $motionPolicy=Join-Path $root $chosen.boundary_motion.policy
+ if((Get-FileHash -LiteralPath $motionPolicy -Algorithm SHA256).Hash.ToLowerInvariant() -ne $chosen.boundary_motion.sha256){throw 'Boundary motion checksum mismatch'}
+ & (Join-Path $PSScriptRoot 'boundary_motion_demo.ps1') -Seed $Seed -Size $Size -SkipBuild:$SkipBuild
+}else{
+ & (Join-Path $PSScriptRoot 'boundary_heading_demo.ps1') -Seed $Seed -Size $Size -SkipBuild:$SkipBuild
+}
 if($LASTEXITCODE -ne 0){throw 'Current simulation failed'}

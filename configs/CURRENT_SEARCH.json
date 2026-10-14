@@ -6,7 +6,7 @@
   "policy_format": "RSP1",
   "launcher": "heading",
   "runtime_sketch": "DigitalTwinParkingPrecision",
-  "runtime_overlay": "training/boundary_heading_cert/java",
+  "runtime_overlay": "training/boundary_motion/java",
   "temperature": 0.5,
   "local_method": "early_fit",
   "selected_by_user": true,
@@ -28,7 +28,7 @@
   },
   "edge_detection": true,
   "boundary_guard": "recent_interior_witness_subgoal_gate",
-  "wheel_motion_model": "existing_executor; dedicated boundary-motion model pending",
+  "wheel_motion_model": "conditional_hold_reverse_v1",
   "virtual_boundary": true,
   "total_search_deadline_seconds": null,
   "default_size_m": 3,
@@ -38,8 +38,23 @@
     3,
     4
   ],
-  "scope": "Freeze exploration policy and early_fit parking; next optimize only boundary-motion execution.",
+  "scope": "Keep exploration, direction gate and early_fit frozen; conditional boundary wheel motion implemented and simulation validated.",
   "modules": "configs/RETAINED_MODULES.json",
   "historical_selection": "results/boundary_heading_v2/final_compare/delivery.json",
-  "previous_default_archive": "archives/20261013_cleanup/superseded_sources_and_reports.zip::configs/CURRENT_SEARCH.json"
+  "previous_default_archive": "archives/20261013_cleanup/superseded_sources_and_reports.zip::configs/CURRENT_SEARCH.json",
+  "boundary_motion": {
+    "enabled": true,
+    "model": "conditional_hold_reverse_v1",
+    "policy": "models/boundary_motion_candidate/policy.bin",
+    "sha256": "5e230f648838020db73adc3fcefa34a9b30552583342c0f10e9d6f0c203d9ccf",
+    "parallel_threshold_degrees": 25,
+    "report": "docs/触边运动优化报告.md",
+    "evaluation": "results/boundary_motion_v1/summary.json",
+    "inference_inputs": [
+      "main_model_selected_heading",
+      "original_heading"
+    ],
+    "guard_inputs": "reflectance and encoder edge evidence; estimated wheel velocity",
+    "simulated_only": true
+  }
 }

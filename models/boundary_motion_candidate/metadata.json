@@ -1,0 +1,93 @@
+{
+  "format": "BMM1",
+  "bytes": 304,
+  "sha256": "5e230f648838020db73adc3fcefa34a9b30552583342c0f10e9d6f0c203d9ccf",
+  "inputs": [
+    "chosen_heading",
+    "original_heading"
+  ],
+  "features": [
+    "cos(chosen-original)",
+    "abs(sin(chosen-original))"
+  ],
+  "outputs": [
+    "inner_reverse_speed_mm_s",
+    "inward_tilt_deg",
+    "advance_mm"
+  ],
+  "training_scene_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "validation_scene_ids": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "targets": [
+    {
+      "angle": 112.5,
+      "count": 3,
+      "parameters": [
+        150.0,
+        22.0,
+        0.0
+      ],
+      "objective": 0.5133333333333333
+    },
+    {
+      "angle": 135.0,
+      "count": 5,
+      "parameters": [
+        150.0,
+        10.0,
+        0.0
+      ],
+      "objective": 0.5468
+    },
+    {
+      "angle": 157.5,
+      "count": 20,
+      "parameters": [
+        150.0,
+        22.0,
+        0.0
+      ],
+      "objective": 1.2158999999999998
+    },
+    {
+      "angle": 180.0,
+      "count": 5,
+      "parameters": [
+        150.0,
+        35.0,
+        0.0
+      ],
+      "objective": 0.6308
+    }
+  ],
+  "loss": 1.0273779480485246e-06,
+  "seed": 20261014,
+  "method": "27 candidate parameter sets per eligible contact; train scenes only; distilled angle-bucket means",
+  "activation": "Measured axle-edge angle <=25deg; outward heading; asymmetric wheel clearance; reliable straight-edge fit",
+  "limitations": "Simulation actuator assumptions. Two headings alone do not identify an edge angle or the nearer wheel; these are handled by a sensor/encoder gate."
+}
