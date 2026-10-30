@@ -1,1 +1,0 @@
-public final class GateAudit {public static void main(String[] args)throws Exception{HardHeadingAudit.main(args);}}

@@ -1,13 +1,9 @@
-/build/
-/tmp/
-/tools/
-/archives/
-/delivery/
-/versions/
-/.playwright-cli/
+# ????????scripts/build.ps1?run.ps1?verify.py ??????
+/.cache/
+/runs/
+experiments/results/layout_*/
+experiments/outputs/
 __pycache__/
 *.pyc
+*.class
 *.log
-/data/*
-!/data/local_opt/
-/results/retention_20261013/check_*/integration_runs/

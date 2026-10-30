@@ -1,0 +1,21 @@
+{
+  "scenes": 64,
+  "found": 64,
+  "parked": 64,
+  "mean_first_black_s": 113.57,
+  "median_first_black_s": 84.94,
+  "mean_total_s": 133.87,
+  "coverage_eff": 0.951,
+  "parallel_lt70": 0.101,
+  "parallel_70_220": 0.1,
+  "reverse_share": 0.467,
+  "search_full_wheel_s": 4.687,
+  "scenes_with_critical": 3,
+  "worst_wheel_mm": -60.5,
+  "label": "test_gate_penalty8",
+  "scenes_file": "fresh_holdout_scenes.csv",
+  "properties": [
+    "parking.gate=direction",
+    "parking.redundancyWeight=8"
+  ]
+}

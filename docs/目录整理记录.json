@@ -1,0 +1,74 @@
+{
+  "current_handwritten_code_files": 26,
+  "runtime_java_files": 11,
+  "processing_tabs": 6,
+  "old_snapshot_code_files": 114,
+  "parking_core_lines_before": 637,
+  "parking_core_lines_now": 530,
+  "archive": "E:\\SEMTM0043\\RepeatableParking_Archive\\20261014_directory_cleanup",
+  "dependencies": "E:\\SEMTM0043\\ProjectTools\\RepeatableParking",
+  "github_updated": false,
+  "files": {
+    "停车控制台.cmd": "d046ca32a0eb99a6dc0c69cd058f372fdd5a898eea88554a479c19ba08747b65",
+    "simulation/ParkingSimulation/BoundaryMotion.java": "6c400dce2178176d73e73f7cb3239cf31dd15f0616053a79b7c17248b7590b02",
+    "simulation/ParkingSimulation/CompactSearch.java": "e6a30d45ac41c317151d3b85d83a4b755c4ed9535542bb38269ef018f07ea591",
+    "simulation/ParkingSimulation/EdgeEstimate.java": "51f5ac05005f843ef211f5247ce5b996381ff7a2c71fe5173f9a2ec24b11e2ec",
+    "simulation/ParkingSimulation/HeadingGate.java": "f8035e9bd374bb2f2f620651ed33ac9220b46230ceaad14127a819e8e6ebdfc0",
+    "simulation/ParkingSimulation/MotorsModel.pde": "38dc1af53a79a830ef61fcb493f7e9349590593750662004df0aacbaebe7908b",
+    "simulation/ParkingSimulation/OdometryModel.pde": "72fb2665faf5dc71bd1c0134a42a7f431c52e8b002b603ae863c0a14dd6a4482",
+    "simulation/ParkingSimulation/ParkingCore.java": "19e00e57ea9290312779bbd8def1b38714d0773059e297127957fcd7b0b231c0",
+    "simulation/ParkingSimulation/ParkingFrameProbe.java": "a5aa8bc95cd91597db6899ebb9fe00b0bf40c9b42bcb56f93e68bda230f27d69",
+    "simulation/ParkingSimulation/ParkingSimulation.pde": "ff152caee06fda7874fa21cbce1cf50bab6802b196a7bf808d76f9dd5c2b3ed8",
+    "simulation/ParkingSimulation/RobotSimulation.pde": "7a5ccd9ab5bfab6f1f94b2c43019a46b34b3d67469dd404bc1036cb26084ee3a",
+    "simulation/ParkingSimulation/SearchDecision.java": "9bd00a1ec545609317cd086820e375fbbc7dfc2981f2533f0ca75f1e5c6a6d52",
+    "simulation/ParkingSimulation/SearchMemory.java": "0766b6ef8cc2d999efcb60095f98e006843b0edf8805b80db04739f1071f63e5",
+    "simulation/ParkingSimulation/SimulationRunner.java": "311cbb2c344f2673875435567e2f25faad78ca73561733b3e45cbb96c9c58b24",
+    "simulation/ParkingSimulation/SupportRisk.java": "01cbf8528d9246430e58ea7012b9b7f8a2c2e97695080d128fa9a937e38a4be1",
+    "simulation/ParkingSimulation/SurfaceSensorModel.pde": "c65977fb50b9514cb04186462d8fbc72cca4c83f760f6ab0740ad821cb3a207d",
+    "simulation/ParkingSimulation/WheelDynamics.java": "88bf4d06e9c10420e98e1e80d8e754adadde545796abe006e223a49f6d3e8e54",
+    "scripts/build.ps1": "4629627798e681cb9e6cc46313a26bc0bda74ba1fc304ade42cd09d5e5e86f1a",
+    "scripts/Preprocess.java": "43077b8d87a20b4635732b2d95d2ca06c05c5b82cd26ee1795433cdf8d3d6ccd",
+    "scripts/run.ps1": "419f04668b4a95207a2ad70f253141d229cbebdb26c1c9f6b38ebbb88f45be94",
+    "scripts/verify.py": "c891ed24f8fa94e52e093c3e5de9861f99f66b8284c40baf432213bea0a165ac",
+    "experiments/train_boundary_motion.py": "716f9e14b89a5bf49c267874d3939db67c6b0d8edc6886858a30e26783b94547",
+    "experiments/java/EvaluationScenes.java": "ca267290ae9ce6363f0e11873e9938265f98609113eb25b523623a6153925578",
+    "experiments/java/ParkingEvaluation.java": "3a6e98418f1d984e0867673e17f6c7ea9951f24cfc6ea97f43acb583f0b85475",
+    "experiments/java/SimulationChecks.java": "8a4b19693a910aa0fa1265d5471dc8fb4a29d5c1cf0377eebd01123564127d66",
+    "simulation/ParkingSimulation/MapEditor.pde": "72ce75964d12aa947ce8c18a0788fd05e28de1ec0539877a078faf7d1772a81e"
+  },
+  "startup_compatibility_fix": {
+    "powershell": "Windows PowerShell 5.1",
+    "ps1_encoding": "UTF-8 BOM",
+    "external_working_directory_launch": "passed",
+    "actual_cmd_launcher": "passed"
+  },
+  "boundary_motion_fix": {
+    "date": "2026-10-14",
+    "controller": "conditional_hold_reverse_direct_turn_v2",
+    "runtime_file_count_unchanged": true,
+    "report": "docs/触边运动优化报告.md",
+    "result": "experiments/results/boundary_20261014/summary.json",
+    "original_replays_unchanged": true
+  },
+  "optional_map_editor": {
+    "date": "2026-10-14",
+    "new_source": "simulation/ParkingSimulation/MapEditor.pde",
+    "switches_default_off": true,
+    "map_size_buttons_m": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "full_64_results_unchanged": true,
+    "report": "experiments/results/map_editor_20261014/verification.json"
+  },
+  "complex_boundary_memory_fix": {
+    "date": "2026-10-14",
+    "no_global_line_memory_in_custom_mode": true,
+    "no_convex_hull_in_custom_mode": true,
+    "visitation_retained": true,
+    "normal_64_reference_unchanged": true,
+    "summary": "experiments/results/local_boundaries_20261014/summary.json"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "scenes": 64,
+  "found": 64,
+  "parked": 64,
+  "mean_first_black_s": 121.66,
+  "median_first_black_s": 93.14,
+  "mean_total_s": 140.56,
+  "coverage_eff": 0.899,
+  "parallel_lt70": 0.12,
+  "parallel_70_220": 0.116,
+  "reverse_share": 0.504,
+  "search_full_wheel_s": 1.512,
+  "scenes_with_critical": 0,
+  "worst_wheel_mm": -30.5,
+  "label": "fixed64_default_entry",
+  "scenes_file": "fresh_holdout_scenes.csv",
+  "properties": [
+    "parking.gate=direction",
+    "parking.redundancyWeight=8",
+    "parking.boundaryMotion=vector",
+    "parking.vectorSafeMm=70",
+    "parking.adaptiveEntry=true"
+  ]
+}

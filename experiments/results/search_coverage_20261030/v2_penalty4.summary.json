@@ -1,0 +1,20 @@
+{
+  "scenes": 64,
+  "found": 63,
+  "parked": 61,
+  "mean_first_black_s": 141.94,
+  "median_first_black_s": 66.47,
+  "mean_total_s": 326.75,
+  "coverage_eff": 0.836,
+  "parallel_lt70": 0.144,
+  "parallel_70_220": 0.128,
+  "reverse_share": 0.249,
+  "search_full_wheel_s": 11.425,
+  "scenes_with_critical": 2,
+  "worst_wheel_mm": -44.6,
+  "label": "v2_penalty4",
+  "scenes_file": "tuning_scenes_20261030.csv",
+  "properties": [
+    "parking.redundancyWeight=4"
+  ]
+}

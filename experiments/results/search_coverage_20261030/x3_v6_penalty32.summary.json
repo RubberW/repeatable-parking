@@ -1,0 +1,21 @@
+{
+  "scenes": 192,
+  "found": 192,
+  "parked": 184,
+  "mean_first_black_s": 160.96,
+  "median_first_black_s": 90.45,
+  "mean_total_s": 185.0,
+  "coverage_eff": 0.898,
+  "parallel_lt70": 0.107,
+  "parallel_70_220": 0.094,
+  "reverse_share": 0.029,
+  "search_full_wheel_s": 10.17,
+  "scenes_with_critical": 27,
+  "worst_wheel_mm": -126.0,
+  "label": "x3_v6_penalty32",
+  "scenes_file": "tuning_scenes_20261030_x3.csv",
+  "properties": [
+    "parking.gate=direction",
+    "parking.redundancyWeight=32"
+  ]
+}

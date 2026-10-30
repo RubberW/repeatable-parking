@@ -1,0 +1,25 @@
+{
+  "scenes": 128,
+  "found": 128,
+  "parked": 128,
+  "mean_first_black_s": 160.59,
+  "median_first_black_s": 91.94,
+  "mean_total_s": 174.0,
+  "coverage_eff": 0.886,
+  "parallel_lt70": 0.117,
+  "parallel_70_220": 0.121,
+  "reverse_share": 0.493,
+  "search_full_wheel_s": 2.037,
+  "scenes_with_critical": 0,
+  "worst_wheel_mm": -31.2,
+  "label": "confirm4_direct",
+  "scenes_file": "confirm_scenes_20261103_x2.csv",
+  "properties": [
+    "parking.gate=direction",
+    "parking.redundancyWeight=8",
+    "parking.boundaryMotion=vector",
+    "parking.vectorSafeMm=70",
+    "parking.adaptiveEntry=true",
+    "parking.directApproach=true"
+  ]
+}

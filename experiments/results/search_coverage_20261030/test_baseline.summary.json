@@ -1,0 +1,18 @@
+{
+  "scenes": 64,
+  "found": 64,
+  "parked": 64,
+  "mean_first_black_s": 174.21,
+  "median_first_black_s": 104.31,
+  "mean_total_s": 195.61,
+  "coverage_eff": 0.819,
+  "parallel_lt70": 0.194,
+  "parallel_70_220": 0.157,
+  "reverse_share": 0.519,
+  "search_full_wheel_s": 5.538,
+  "scenes_with_critical": 0,
+  "worst_wheel_mm": -31.1,
+  "label": "test_baseline",
+  "scenes_file": "fresh_holdout_scenes.csv",
+  "properties": []
+}

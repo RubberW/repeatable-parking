@@ -1,0 +1,18 @@
+{
+  "scenes": 128,
+  "found": 128,
+  "parked": 124,
+  "mean_first_black_s": 204.06,
+  "median_first_black_s": 91.55,
+  "mean_total_s": 226.8,
+  "coverage_eff": 0.745,
+  "parallel_lt70": 0.228,
+  "parallel_70_220": 0.161,
+  "reverse_share": 0.494,
+  "search_full_wheel_s": 5.646,
+  "scenes_with_critical": 2,
+  "worst_wheel_mm": -75.2,
+  "label": "confirm3_baseline",
+  "scenes_file": "confirm_scenes_20261102_x2.csv",
+  "properties": []
+}

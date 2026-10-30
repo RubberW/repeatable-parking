@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-14",
+  "default_switches_off": true,
+  "full_64_regression": "experiments/results/layout_e8d2f5fa/verification.json",
+  "latest_cmd_startup": "experiments/results/layout_2f14c2cf/verification.json",
+  "original_default_spawn_identical": true,
+  "geometry_checks": [
+    "ellipse",
+    "concave outline",
+    "self-crossing rejection",
+    "wall reflectance",
+    "impenetrable wall",
+    "encoder travel constrained by collision"
+  ],
+  "native_mouse_checks": [
+    "size buttons",
+    "random frame toggle",
+    "circle drag",
+    "ellipse drag",
+    "freehand concave outline",
+    "wall drag",
+    "undo",
+    "apply and run",
+    "save using isolated test draft",
+    "invalid centre position rolls back switch and preserves run",
+    "toggle off restores rectangle",
+    "random toggle off restores centre",
+    "size changed while editing is consistent after closing editor"
+  ],
+  "model_hashes_unchanged": true,
+  "handwritten_source_files": 26,
+  "runtime_java_files": 11,
+  "processing_tabs": 6,
+  "screenshot": "experiments/results/map_editor_20261014/window.png",
+  "limitations": "Custom collision constraints are environment behaviour, not proof of learned obstacle avoidance. Concave/walled scenes have no completion guarantee."
+}

@@ -1,0 +1,3 @@
+scene,size,placement,status,first_black_s,total_s,local_s,parked,false_completion,search_full_wheel_s,search_critical_s,search_min_wheel_mm,total_full_wheel_s,total_critical_s,centre_error_mm,heading_error_deg,motion_starts,motion_completed,max_hold_drift_mm,decisions
+scene_1791949429421,3.0,reported,parked,25.380,42.990,17.610,true,false,3.4800,1.9100,-99.8048,3.4800,1.9100,1.69395,0.82640,0,0,0.0000,9
+scene_1791949290531,3.0,reported,parked,232.050,246.320,14.270,true,false,8.2300,2.4200,-110.6181,8.2300,2.4200,1.36192,0.79896,5,5,23.5685,71

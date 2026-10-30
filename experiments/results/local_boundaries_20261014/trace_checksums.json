@@ -1,0 +1,22 @@
+{
+  "before_trace.csv.gz": {
+    "original_bytes": 10977385,
+    "compressed_bytes": 1516433,
+    "sha256_uncompressed": "827928b1288132cf95f4c74d56d8f43b85e8ae4414b462a975308f2625ef9113"
+  },
+  "local_trace.csv.gz": {
+    "original_bytes": 63215563,
+    "compressed_bytes": 4360124,
+    "sha256_uncompressed": "98e1fa140fde4c8a72a484b600a4821744fb5782931126b82b66724da10b13f1"
+  },
+  "recovered_trace.csv.gz": {
+    "original_bytes": 32740571,
+    "compressed_bytes": 4941667,
+    "sha256_uncompressed": "ee746b19d577bc88dfa812bdcefd48e96383de9ed37de2f94e074e52c8146335"
+  },
+  "current_trace.csv.gz": {
+    "original_bytes": 24883280,
+    "compressed_bytes": 1960752,
+    "sha256_uncompressed": "bab69b47ed1f63563a8988b1062200e801a83dbd61fbf04095299e039dfa7b93"
+  }
+}

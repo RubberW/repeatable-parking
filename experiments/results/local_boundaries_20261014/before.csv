@@ -1,0 +1,4 @@
+scene,size,placement,status,first_black_s,total_s,local_s,parked,false_completion,search_full_wheel_s,search_critical_s,search_min_wheel_mm,total_full_wheel_s,total_critical_s,centre_error_mm,heading_error_deg,motion_starts,motion_completed,max_hold_drift_mm,decisions
+scene_1791952409117,1.0,reported_custom,uncertain_reflectance_stop,-1.000,51.460,-1.000,false,false,0.0000,0.0000,5.0005,0.0000,0.0000,377.69003,135.95258,8,8,9.5396,18
+scene_1791952338324,4.0,reported_custom,uncertain_reflectance_stop,-1.000,232.910,-1.000,false,false,0.0000,0.0000,5.0000,0.0000,0.0000,3057.99516,79.46293,21,21,12.6260,98
+scene_1791952305186,3.0,reported_custom,uncertain_reflectance_stop,-1.000,172.770,-1.000,false,false,0.0000,0.0000,5.0000,0.0000,0.0000,747.81383,34.58167,8,8,9.5396,42

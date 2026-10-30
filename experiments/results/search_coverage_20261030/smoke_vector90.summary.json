@@ -1,0 +1,22 @@
+{
+  "scenes": 64,
+  "found": 64,
+  "parked": 62,
+  "mean_first_black_s": 161.71,
+  "median_first_black_s": 89.01,
+  "mean_total_s": 186.3,
+  "coverage_eff": 0.821,
+  "parallel_lt70": 0.143,
+  "parallel_70_220": 0.129,
+  "reverse_share": 0.575,
+  "search_full_wheel_s": 1.373,
+  "scenes_with_critical": 2,
+  "worst_wheel_mm": -48.0,
+  "label": "smoke_vector90",
+  "scenes_file": "tuning_scenes_20261030.csv",
+  "properties": [
+    "parking.gate=direction",
+    "parking.redundancyWeight=8",
+    "parking.boundaryMotion=vector"
+  ]
+}

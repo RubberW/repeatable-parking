@@ -1,0 +1,21 @@
+{
+  "scenes": 64,
+  "found": 62,
+  "parked": 60,
+  "mean_first_black_s": 175.59,
+  "median_first_black_s": 92.05,
+  "mean_total_s": 191.65,
+  "coverage_eff": 0.86,
+  "parallel_lt70": 0.193,
+  "parallel_70_220": 0.144,
+  "reverse_share": 0.565,
+  "search_full_wheel_s": 5.437,
+  "scenes_with_critical": 1,
+  "worst_wheel_mm": -31.3,
+  "label": "v2_gate_penalty1",
+  "scenes_file": "tuning_scenes_20261030.csv",
+  "properties": [
+    "parking.gate=direction",
+    "parking.redundancyWeight=1"
+  ]
+}

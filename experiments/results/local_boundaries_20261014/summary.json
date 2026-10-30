@@ -1,0 +1,206 @@
+{
+  "date": "2026-10-14",
+  "cause": "SearchMemory inferred global straight half-planes after >=3 encounters, including a rectangle orientation prior. HeadingGate also assumed a convex region. These assumptions are invalid for concave outlines and internal walls.",
+  "fix": {
+    "complex_maps": "No global line fitting or line-based preemption; no convex hull. Use expiring local obstacle points; retain visitation/corridors.",
+    "local_observation_lifetime_ms": 2000,
+    "local_observation_travel_mm": 240,
+    "local_subgoal_lengths_mm": [
+      120,
+      240
+    ],
+    "encoder_stalled_pivot_recovery_ms": 400,
+    "normal_rectangle_mode": "unchanged",
+    "model_weights": "unchanged"
+  },
+  "reported_before": [
+    {
+      "scene": "scene_1791952409117",
+      "size": "1.0",
+      "placement": "reported_custom",
+      "status": "uncertain_reflectance_stop",
+      "first_black_s": "-1.000",
+      "total_s": "51.460",
+      "local_s": "-1.000",
+      "parked": "false",
+      "false_completion": "false",
+      "search_full_wheel_s": "0.0000",
+      "search_critical_s": "0.0000",
+      "search_min_wheel_mm": "5.0005",
+      "total_full_wheel_s": "0.0000",
+      "total_critical_s": "0.0000",
+      "centre_error_mm": "377.69003",
+      "heading_error_deg": "135.95258",
+      "motion_starts": "8",
+      "motion_completed": "8",
+      "max_hold_drift_mm": "9.5396",
+      "decisions": "18"
+    },
+    {
+      "scene": "scene_1791952338324",
+      "size": "4.0",
+      "placement": "reported_custom",
+      "status": "uncertain_reflectance_stop",
+      "first_black_s": "-1.000",
+      "total_s": "232.910",
+      "local_s": "-1.000",
+      "parked": "false",
+      "false_completion": "false",
+      "search_full_wheel_s": "0.0000",
+      "search_critical_s": "0.0000",
+      "search_min_wheel_mm": "5.0000",
+      "total_full_wheel_s": "0.0000",
+      "total_critical_s": "0.0000",
+      "centre_error_mm": "3057.99516",
+      "heading_error_deg": "79.46293",
+      "motion_starts": "21",
+      "motion_completed": "21",
+      "max_hold_drift_mm": "12.6260",
+      "decisions": "98"
+    },
+    {
+      "scene": "scene_1791952305186",
+      "size": "3.0",
+      "placement": "reported_custom",
+      "status": "uncertain_reflectance_stop",
+      "first_black_s": "-1.000",
+      "total_s": "172.770",
+      "local_s": "-1.000",
+      "parked": "false",
+      "false_completion": "false",
+      "search_full_wheel_s": "0.0000",
+      "search_critical_s": "0.0000",
+      "search_min_wheel_mm": "5.0000",
+      "total_full_wheel_s": "0.0000",
+      "total_critical_s": "0.0000",
+      "centre_error_mm": "747.81383",
+      "heading_error_deg": "34.58167",
+      "motion_starts": "8",
+      "motion_completed": "8",
+      "max_hold_drift_mm": "9.5396",
+      "decisions": "42"
+    }
+  ],
+  "reported_after": [
+    {
+      "scene": "scene_1791952409117",
+      "size": "1.0",
+      "placement": "reported_custom",
+      "status": "parked",
+      "first_black_s": "187.100",
+      "total_s": "214.800",
+      "local_s": "27.700",
+      "parked": "true",
+      "false_completion": "false",
+      "search_full_wheel_s": "0.0000",
+      "search_critical_s": "0.0000",
+      "search_min_wheel_mm": "5.0000",
+      "total_full_wheel_s": "0.0000",
+      "total_critical_s": "0.0000",
+      "centre_error_mm": "1.40793",
+      "heading_error_deg": "0.65889",
+      "motion_starts": "52",
+      "motion_completed": "52",
+      "max_hold_drift_mm": "20.2016",
+      "decisions": "82"
+    },
+    {
+      "scene": "scene_1791952338324",
+      "size": "4.0",
+      "placement": "reported_custom",
+      "status": "censored_evaluation_time_budget",
+      "first_black_s": "-1.000",
+      "total_s": "600.000",
+      "local_s": "-1.000",
+      "parked": "false",
+      "false_completion": "false",
+      "search_full_wheel_s": "0.0000",
+      "search_critical_s": "0.0000",
+      "search_min_wheel_mm": "5.0000",
+      "total_full_wheel_s": "0.0000",
+      "total_critical_s": "0.0000",
+      "centre_error_mm": "2168.95708",
+      "heading_error_deg": "135.14712",
+      "motion_starts": "13",
+      "motion_completed": "13",
+      "max_hold_drift_mm": "10.9425",
+      "decisions": "99"
+    },
+    {
+      "scene": "scene_1791952305186",
+      "size": "3.0",
+      "placement": "reported_custom",
+      "status": "parked",
+      "first_black_s": "267.690",
+      "total_s": "287.600",
+      "local_s": "19.910",
+      "parked": "true",
+      "false_completion": "false",
+      "search_full_wheel_s": "0.0000",
+      "search_critical_s": "0.0000",
+      "search_min_wheel_mm": "5.0000",
+      "total_full_wheel_s": "0.0000",
+      "total_critical_s": "0.0000",
+      "centre_error_mm": "0.94239",
+      "heading_error_deg": "0.29275",
+      "motion_starts": "18",
+      "motion_completed": "18",
+      "max_hold_drift_mm": "17.9570",
+      "decisions": "82"
+    }
+  ],
+  "before_evidence": {
+    "scene_1791952409117": {
+      "max_remembered_lines": 0,
+      "edge_preemptions": 0,
+      "last_edge": 9,
+      "last_guard": "DIRECTION_UNCERTAIN_STOP",
+      "blocked": true
+    },
+    "scene_1791952338324": {
+      "max_remembered_lines": 2,
+      "edge_preemptions": 36,
+      "last_edge": 21,
+      "last_guard": "DIRECTION_UNCERTAIN_STOP",
+      "blocked": true
+    },
+    "scene_1791952305186": {
+      "max_remembered_lines": 1,
+      "edge_preemptions": 3,
+      "last_edge": 8,
+      "last_guard": "DIRECTION_UNCERTAIN_STOP",
+      "blocked": true
+    }
+  },
+  "after_evidence": {
+    "scene_1791952409117": {
+      "max_remembered_lines": 0,
+      "edge_preemptions": 0,
+      "last_edge": 52,
+      "last_guard": "CLEAR",
+      "blocked": false
+    },
+    "scene_1791952338324": {
+      "max_remembered_lines": 0,
+      "edge_preemptions": 0,
+      "last_edge": 13,
+      "last_guard": "CLEAR",
+      "blocked": false
+    },
+    "scene_1791952305186": {
+      "max_remembered_lines": 0,
+      "edge_preemptions": 0,
+      "last_edge": 18,
+      "last_guard": "CLEAR",
+      "blocked": false
+    }
+  },
+  "rectangular_64_verification": "experiments/results/layout_8e46fa1e/verification.json",
+  "native_mouse_mode_switch_checks": "passed",
+  "limitations": [
+    "The 4m reported scene was still searching at the 600s offline evaluation budget; this is not a runtime deadline.",
+    "Local direction screening does not prove a clear full trajectory or guarantee completing arbitrary maps.",
+    "No simulator coordinates, wall geometry or target position enter the model. Only the user-selected processing mode is passed to the controller."
+  ],
+  "latest_cmd_startup": "experiments/results/layout_d48b5470/verification.json"
+}

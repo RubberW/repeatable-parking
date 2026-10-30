@@ -1,3 +1,7 @@
+/**
+ * 文件职责：把我们自己的PDE标签页转成可编译Java，并复制草图的Java组件。
+ * 输入：草图目录；输出：.cache/generated。仅由scripts/build.ps1调用。
+ */
 import java.nio.file.*;
 import java.io.*;
 import java.util.*;

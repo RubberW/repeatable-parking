@@ -1,23 +1,18 @@
 {
-  "updated": "2026-10-14",
+  "updated": "2026-10-30",
   "active_decision": "configs/CURRENT_SEARCH.json",
   "modules": [
     {
       "id": "exploration",
       "name": "探索主模型",
       "status": "retained_validation_selected",
-      "model": "heading_seed4 + recent-interior-witness heading gate",
-      "policy": "models/boundary_heading_selected/policy.bin",
+      "model": "heading_seed4 (weights unchanged) + detection-scale redundancy penalty (weight 8) + edge-uncertainty direction gate",
+      "policy": "models/exploration/policy.bin",
       "sha256": "c24340da7469c7e1c44f02d5f2796cce43031c005d8d819bb0d4d2f209c7602e",
       "temperature": 0.5,
-      "report": "results/boundary_heading_v2/本轮方向学习简报.txt",
-      "historical_fresh_holdout": {
-        "found": 64,
-        "cases": 64,
-        "mean_found_s": 190.6690625
-      },
-      "role": "Use visitation memory and persistent subgoals; choose new regions and feasible desired directions after edge contact.",
-      "limitation": "The direction gate does not constrain the wheel trajectory during a turn. This is a validation-selected baseline, not a global optimum."
+      "report": "experiments/results/search_coverage_20261030/README.md",
+      "role": "Use visitation memory and persistent subgoals; scores are reduced by the share of the candidate's 220 mm detection swath already covered; after edge contact any direction inward of the uncertain edge fit may be chosen.",
+      "limitation": "Visits edges about twice as often as before. Penalty weight and gate margins tuned in simulation only; custom maps keep the previous local screening and no penalty."
     },
     {
       "id": "local_parking",
@@ -26,35 +21,31 @@
       "method": "early_fit",
       "kind": "geometric feedback controller, not separate neural weights",
       "sources": [
-        "training/boundary_heading_cert/java/ParkingCore.java",
-        "training/boundary_heading_cert/java/EdgeTracer.java"
+        "simulation/ParkingSimulation/ParkingCore.java",
+        "simulation/ParkingSimulation/ParkingFrameProbe.java"
       ],
-      "report": "results/unlimited_optimization/RESULTS.txt",
-      "historical_nominal_local_test": {
-        "parked": 64,
-        "cases": 64,
-        "mean_local_s": 19.91
-      },
+      "report": "docs/代码分工.md",
       "role": "Fit early when observations suffice, verify direction stripes, scan laterally only when ambiguous, then park and verify settling.",
-      "limitation": "The 19.91-second local metric and the main model's search metric come from different experiments; do not add them as a measured end-to-end score."
+      "limitation": "Current early_fit behaviour retained; unused search modes removed."
     },
     {
       "id": "boundary_motion",
-      "name": "触边运动小模型",
-      "status": "implemented_simulation_validated",
+      "name": "触边动作（方向向量）",
+      "status": "default_since_2026-10-30_simulation_validated",
+      "kind": "geometric rule-based escape planner with one tuned parameter (safe_mm=70), not a neural network",
       "inputs": [
-        "main-model selected heading",
-        "original heading"
+        "main-model selected heading (kept as a vector; start point may move)",
+        "edge fit at contact, grey cells, visited cells, encoders"
       ],
-      "outputs": "Angle-conditioned inner-wheel reverse speed and inward tilt; encoder-feedback controller emits left/right commands.",
-      "role": "Execute the chosen direction after edge contact; reduce wheel and centre excursion while recovering promptly.",
-      "constraints": "Exploration weights, HeadingGate and early_fit remain frozen. Simulator truth is used only in evaluation. No hardware upload.",
-      "evaluation": "results/boundary_motion_v1/summary.json",
-      "policy": "models/boundary_motion_candidate/policy.bin",
+      "outputs": "Brake; reverse along the visited track (steep contact) or hold the outer wheel and reverse the inner one (grazing contact) until the centre is safe_mm from all edge evidence; spin to the heading; travel along it from the new position. A new edge contact during the manoeuvre aborts it and asks for a fresh decision.",
+      "role": "Execute the chosen direction after edge contact without spinning next to the edge.",
+      "constraints": "Exploration weights and early_fit unchanged. No simulator truth enters inference.",
+      "evaluation": "experiments/results/search_coverage_20261030/README.md",
+      "policy": "models/boundary_motion/policy.bin",
       "sha256": "5e230f648838020db73adc3fcefa34a9b30552583342c0f10e9d6f0c203d9ccf",
-      "guard": "Sensor/encoder straight-edge estimate; outward near-parallel asymmetric contact only; direct steering otherwise.",
-      "report": "docs/触边运动优化报告.md",
-      "limitation": "Reduces observed risk, does not eliminate wheel/centre excursion; motor inertia means the held wheel still moves initially."
+      "policy_use": "The 304-byte network is only used by the previous conditional motion, which custom maps still use.",
+      "report": "experiments/results/search_coverage_20261030/README.md",
+      "limitation": "About 0.25 s wheel excursion per contact remains from braking inertia. Relies on odometry for visited/grey cells. No physical validation."
     }
   ]
 }

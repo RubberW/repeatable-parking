@@ -1,34 +1,33 @@
 {
-  "method": "访问记忆＋持续子目标探索；主模型在桌内可行方向中选择触边后的目标方向",
+  "method": "访问记忆＋持续子目标探索；主模型打分减去检测尺度重复扣分；触边后方向约束按边线不确定性放行；触边动作先离边再转向（方向向量语义）",
   "model": "heading_seed4",
-  "policy": "models/boundary_heading_selected/policy.bin",
+  "policy": "models/exploration/policy.bin",
   "sha256": "c24340da7469c7e1c44f02d5f2796cce43031c005d8d819bb0d4d2f209c7602e",
   "policy_format": "RSP1",
-  "launcher": "heading",
-  "runtime_sketch": "DigitalTwinParkingPrecision",
-  "runtime_overlay": "training/boundary_motion/java",
+  "runtime_sketch": "simulation/ParkingSimulation",
   "temperature": 0.5,
   "local_method": "early_fit",
+  "local_parking": {
+    "adaptive_entry": true,
+    "rule": "entry or bar reading interrupted by an edge: next attempt enters from the other end of the frame and reads the bars mirrored; scan interrupted: scan from the other side. Uses only the edge just observed.",
+    "direct_approach": true,
+    "direct_approach_rule": "adopted by the user 2026-10-30: after the provisional fit drive straight to the parking point; reject on 3 sampled ink contradictions or an edge correction > 15 mm / 8 deg; correct pose and heading from post-fit black/white transitions matched to real ink edges; fall back to entry + bar verification if fewer than 8 matched transitions or RMS > 1.5 mm; final five-sensor parking signature.",
+    "report": "experiments/results/search_coverage_20261030/README.md"
+  },
   "selected_by_user": true,
-  "selection_reason": "Retain the previous validation-selected combination, not the latest further-trained weights. The user confirmed these three module roles on 2026-10-13.",
-  "validation": {
-    "n": 32,
-    "found": 32,
-    "mean_found_s": 155.21625
-  },
-  "historical_fresh_holdout": {
-    "n": 64,
-    "found": 64,
-    "mean_found_s": 190.6690625,
-    "report": "results/boundary_heading_v2/final_compare/summary.json"
-  },
-  "direction_audit": {
-    "checked_decisions": 635,
-    "outward_decisions": 0
-  },
+  "selection_reason": "Exploration weights unchanged (heading_seed4, validation-selected). 2026-10-30: user adopted the redundancy penalty, direction gate and vector boundary motion after tuning on separate scenes and a 128-run unseen confirmation; see experiments/results/search_coverage_20261030/README.md.",
   "edge_detection": true,
-  "boundary_guard": "recent_interior_witness_subgoal_gate",
-  "wheel_motion_model": "conditional_hold_reverse_v1",
+  "boundary_guard": "direction_gate_edge_uncertainty_v1",
+  "search_gate": {
+    "mode": "direction",
+    "inward_deg": 20,
+    "memory_mm": 4000,
+    "depart_mm": 150,
+    "rule": "reliable edge fit: inward by half fit-spread + inward_deg and no grey cell on the 150 mm departure; otherwise whole subgoal inside the interior-evidence hull with 60 mm margin; otherwise the original recent-hull rule. Rectangle mode only; custom maps keep local screening."
+  },
+  "redundancy_weight": 8,
+  "detect_radius_mm": 110,
+  "wheel_motion_model": "vector_escape_spin_v1",
   "virtual_boundary": true,
   "total_search_deadline_seconds": null,
   "default_size_m": 3,
@@ -38,23 +37,48 @@
     3,
     4
   ],
-  "scope": "Keep exploration, direction gate and early_fit frozen; conditional boundary wheel motion implemented and simulation validated.",
+  "scope": "Single current implementation. Exploration weights unchanged; early_fit landmark fit unchanged, local parking now drives straight to the parking point after the fit (local_parking.direct_approach) with entry + bar verification as fallback. Boundary execution: brake, back out along the visited track or pivot on the outer wheel until the centre is safe_mm from all edge evidence, spin to the chosen heading, then travel along it from the new position.",
   "modules": "configs/RETAINED_MODULES.json",
-  "historical_selection": "results/boundary_heading_v2/final_compare/delivery.json",
-  "previous_default_archive": "archives/20261013_cleanup/superseded_sources_and_reports.zip::configs/CURRENT_SEARCH.json",
   "boundary_motion": {
     "enabled": true,
-    "model": "conditional_hold_reverse_v1",
-    "policy": "models/boundary_motion_candidate/policy.bin",
+    "mode": "vector",
+    "safe_mm": 70,
+    "model": "vector_escape_spin_v1",
+    "custom_map_mode": "learned (conditional_hold_reverse_direct_turn_v2); vector motion not validated on custom maps",
+    "policy": "models/boundary_motion/policy.bin",
     "sha256": "5e230f648838020db73adc3fcefa34a9b30552583342c0f10e9d6f0c203d9ccf",
     "parallel_threshold_degrees": 25,
-    "report": "docs/触边运动优化报告.md",
-    "evaluation": "results/boundary_motion_v1/summary.json",
+    "report": "experiments/results/search_coverage_20261030/README.md",
+    "evaluation": "experiments/results/search_coverage_20261030/confirm_s2_safe70.summary.json",
+    "previous_report": "docs/触边运动优化报告.md",
     "inference_inputs": [
       "main_model_selected_heading",
       "original_heading"
     ],
     "guard_inputs": "reflectance and encoder edge evidence; estimated wheel velocity",
-    "simulated_only": true
+    "simulated_only": true,
+    "regression_reference": "experiments/results/default_20261030_direct/direct_64.csv",
+    "previous_regression_reference": "experiments/results/default_20261030/direct_64.csv",
+    "reported_scenes": "experiments/results/boundary_20261014/reported_scenes.csv",
+    "fallback": "unreliable edge fit: reverse along the visited track only; if escape is blocked (unvisited cell behind, new grey ahead, 300/200 mm cap) spin anyway",
+    "limitation": "About 0.25 s wheel excursion per contact remains from braking inertia (sensors only ~45 mm ahead of the centre). Visited/grey cells rely on odometry; simulator drift is ~4 mm over 8 m. No physical validation."
+  },
+  "runtime_sources": "simulation/ParkingSimulation",
+  "documentation": "docs/代码分工.md",
+  "optional_map_editor": {
+    "enabled_by_default": false,
+    "random_parking_frame_by_default": false,
+    "size_buttons_m": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "draft_file": "configs/FUN_MAP.json",
+    "geometry": "Simple closed polygon outer boundary, open or closed wall polylines. Circle/ellipse tools approximate curves with 96 vertices.",
+    "separation": "Only the simulation environment changes. Two model weights and early_fit stay fixed; standard rectangle mode retains its previous dynamics.",
+    "limitation": "Expiring local direction screening, not arbitrary-map navigation or a trajectory safety certificate; the reported 4m case remains incomplete at the offline 600s budget.",
+    "boundary_evidence": "local_obstacle_points; no global straight-line fitting or convex hull; visited-region and corridor memory retained",
+    "report": "experiments/results/local_boundaries_20261014/summary.json"
   }
 }

@@ -1,0 +1,11 @@
+{
+  "before": "runs\\processing\\scene_1791939308557",
+  "after": "runs\\processing\\scene_1791951592252",
+  "identical_fields": [
+    "robot_x",
+    "robot_y",
+    "robot_yaw",
+    "encoder_seed",
+    "policy_seed"
+  ]
+}

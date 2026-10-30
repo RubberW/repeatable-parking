@@ -1,0 +1,18 @@
+{
+  "scenes": 64,
+  "found": 64,
+  "parked": 62,
+  "mean_first_black_s": 166.26,
+  "median_first_black_s": 93.59,
+  "mean_total_s": 188.52,
+  "coverage_eff": 0.751,
+  "parallel_lt70": 0.232,
+  "parallel_70_220": 0.147,
+  "reverse_share": 0.493,
+  "search_full_wheel_s": 5.53,
+  "scenes_with_critical": 0,
+  "worst_wheel_mm": -35.1,
+  "label": "tune_baseline",
+  "scenes_file": "tuning_scenes_20261030.csv",
+  "properties": []
+}

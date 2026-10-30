@@ -1,0 +1,18 @@
+{
+  "scenes": 192,
+  "found": 192,
+  "parked": 183,
+  "mean_first_black_s": 244.62,
+  "median_first_black_s": 83.62,
+  "mean_total_s": 269.32,
+  "coverage_eff": 0.725,
+  "parallel_lt70": 0.243,
+  "parallel_70_220": 0.164,
+  "reverse_share": 0.442,
+  "search_full_wheel_s": 6.799,
+  "scenes_with_critical": 4,
+  "worst_wheel_mm": -51.2,
+  "label": "x3_baseline",
+  "scenes_file": "tuning_scenes_20261030_x3.csv",
+  "properties": []
+}

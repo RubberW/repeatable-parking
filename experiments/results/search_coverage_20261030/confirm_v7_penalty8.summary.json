@@ -1,0 +1,21 @@
+{
+  "scenes": 128,
+  "found": 128,
+  "parked": 126,
+  "mean_first_black_s": 137.61,
+  "median_first_black_s": 75.08,
+  "mean_total_s": 160.54,
+  "coverage_eff": 0.868,
+  "parallel_lt70": 0.126,
+  "parallel_70_220": 0.119,
+  "reverse_share": 0.402,
+  "search_full_wheel_s": 5.681,
+  "scenes_with_critical": 3,
+  "worst_wheel_mm": -59.7,
+  "label": "confirm_v7_penalty8",
+  "scenes_file": "confirm_scenes_20261101_x2.csv",
+  "properties": [
+    "parking.gate=direction",
+    "parking.redundancyWeight=8"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "date": "2026-10-14",
+  "fault": "Non-parallel or uncertain contacts fell back to forward arc instead of braking and aligning. Admissible endpoint did not certify turn trajectory.",
+  "main_weights_unchanged": true,
+  "motion_weights_unchanged": true,
+  "controller": "conditional_hold_reverse_direct_turn_v2",
+  "reported_before": {
+    "scenes": 2,
+    "parked": 2,
+    "false_completion": 0,
+    "critical_cases": 2,
+    "mean_first_black_s": 128.715,
+    "mean_total_s": 144.655,
+    "mean_full_wheel_s": 5.855,
+    "mean_critical_s": 2.165,
+    "worst_wheel_excursion_mm": 110.6181
+  },
+  "reported_after": {
+    "scenes": 2,
+    "parked": 2,
+    "false_completion": 0,
+    "critical_cases": 0,
+    "mean_first_black_s": 158.55,
+    "mean_total_s": 176.005,
+    "mean_full_wheel_s": 6.08,
+    "mean_critical_s": 0.0,
+    "worst_wheel_excursion_mm": 31.3934
+  },
+  "regression_64_before": {
+    "scenes": 64,
+    "parked": 64,
+    "false_completion": 0,
+    "critical_cases": 8,
+    "mean_first_black_s": 176.1196875,
+    "mean_total_s": 196.50140625,
+    "mean_full_wheel_s": 3.2234375,
+    "mean_critical_s": 0.09984375,
+    "worst_wheel_excursion_mm": 80.4253
+  },
+  "regression_64_after": {
+    "scenes": 64,
+    "parked": 64,
+    "false_completion": 0,
+    "critical_cases": 0,
+    "mean_first_black_s": 174.20765624999999,
+    "mean_total_s": 195.6053125,
+    "mean_full_wheel_s": 5.5384375,
+    "mean_critical_s": 0.0,
+    "worst_wheel_excursion_mm": 31.1323
+  },
+  "limitations": [
+    "Selected on reported scenes; the existing 64 scenes are a regression set, not a new untouched holdout.",
+    "No guarantee of zero wheel crossing.",
+    "Virtual boundary supports the robot outside; no real-hardware validation."
+  ],
+  "verification": "experiments/results/layout_01a8da3c/verification.json",
+  "actual_cmd_launcher_passed": true
+}
